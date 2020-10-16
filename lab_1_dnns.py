@@ -1,10 +1,5 @@
-
-## Building Your First Fully Connected Network
-
-Now you've got to know the basics of pytorch, we can implement a 2-layer fully connected network (a.k.a MultiLayer Percepton) and train it using gradient descent.
-
-First we need to load in our data. We will use [scikit-learn](https://scikit-learn.org/stable/) for this as it bundles the iris dataset.
-"""
+import torch
+import numpy as np
 
 from sklearn import datasets
 iris = datasets.load_iris()  # datasets are stored in a dictionary containing an array of features and targets
