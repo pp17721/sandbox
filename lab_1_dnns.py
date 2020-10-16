@@ -35,12 +35,6 @@ iris['target_names']
 import seaborn as sns
 import pandas as pd
 
-features_df = pd.DataFrame(
-    iris['data'],
-    columns=iris['feature_names']
-)
-features_df['label'] = iris['target_names'][iris['target']]
-sns.pairplot(features_df, hue='label')
 
 """Typically we normalise features input to networks as this helps speed learning up as the loss landscape becomes easier to traverse (for more details see slides 11-13 in [lecture 6 of Geoff Hinton's course](https://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf))."""
 
