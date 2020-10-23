@@ -4,7 +4,7 @@ import numpy as np
 from sklearn import datasets
 iris = datasets.load_iris()  # datasets are stored in a dictionary containing an array of features and targets
 iris.keys()
-
+device = torch.device('cuda')
 """The data is stored in a float64 numpy array with 150 rows of 4 columns. Each row is a data sample, in this case a flower, and each column is a feature of that data sample."""
 
 iris['data'].shape, iris['data'].dtype
@@ -123,7 +123,9 @@ feature_count = 4
 hidden_layer_size = 100
 class_count = 3
 model = MLP(feature_count, hidden_layer_size, class_count)
-
+model = model.to(device)
+features["test"] = features["test"].to(device)
+labels["train"] = labels["train"].to(device) and labels["test"] = labels["test"].to(device)
 """Our model produces a scalar value for each class for each example propagated through the network. We need to squash these values into a pseudo-probability distribution. We can do that with the softmax distribution $\mathrm{softmax} : \mathbb{R}^n \rightarrow [0, 1]^n$. It is defined as follows
 
 $$\mathrm{softmax}(\mathbf{x})_i = \frac{e^{\mathbf{x}_i}}{\sum_j e^{\mathbf{x}_j}}$$
