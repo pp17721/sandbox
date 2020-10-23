@@ -160,7 +160,7 @@ class CNN(nn.Module):
         x = self.pool1(x)
         x = F.relu(self.conv2(x))
         x = self.pool2(x)
-        x = torch.Flatten(x, start_dim=1)
+        x = torch.flatten(x, start_dim=1)
         ## TASK 4: Flatten the output of the pooling layer so it is of shape
         ##         (batch_size, 4096)
         ## TASK 5-2: Pass x through the first fully connected layer
