@@ -145,7 +145,7 @@ class CNN(nn.Module):
         self.initialise_layer(self.conv1)
         self.pool1 = nn.MaxPool2d(kernel_size=(2, 2), stride=(2, 2))
         self.conv2 = nn.Conv2d(
-            in_channels=ImageShape(16,16, 32),
+            in_channels=32,
             out_channels=64,
             kernel_size=(5, 5),
             padding=(2, 2),
