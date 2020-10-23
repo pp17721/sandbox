@@ -206,9 +206,9 @@ class Trainer:
                 data_load_end_time = time.time()
 
 
-                ## TASK 1: Compute the forward pass of the model, print the output shape
-                ##         and quit the program
-                #output =
+                output = self.model.forward(batch)
+                print(output.shape)
+                import sys; sys.exit(1)
 
                 ## TASK 7: Rename `output` to `logits`, remove the output shape printing
                 ##         and get rid of the `import sys; sys.exit(1)`
