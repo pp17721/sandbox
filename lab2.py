@@ -160,7 +160,7 @@ class CNN(nn.Module):
     def forward(self, images: torch.Tensor) -> torch.Tensor:
         x = F.relu(self.conv1(images))
         x = self.pool1(x)
-        x = F.relu(self.conv2(images))
+        x = F.relu(self.conv2(x))
         x = self.pool2(x)
         ## TASK 2-2: Pass x through the second convolutional layer
         ## TASK 3-2: Pass x through the second pooling layer
