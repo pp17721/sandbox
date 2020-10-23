@@ -65,7 +65,9 @@ labels = {
     'train': torch.tensor(train_labels, dtype=torch.long),
     'test': torch.tensor(test_labels, dtype=torch.long),
 }
-
+features["train"] = features["train"].to(device)
+features["test"] = features["test"].to(device)
+labels["train"] = labels["train"].to(device) and labels["test"] = labels["test"].to(device)
 """Now we need to create a fully connected layer that takes an input $x$, and trainable weights $W$ and biases $b$ and computes
 
 $$Wx + b$$
@@ -124,8 +126,6 @@ hidden_layer_size = 100
 class_count = 3
 model = MLP(feature_count, hidden_layer_size, class_count)
 model = model.to(device)
-features["test"] = features["test"].to(device)
-labels["train"] = labels["train"].to(device) and labels["test"] = labels["test"].to(device)
 """Our model produces a scalar value for each class for each example propagated through the network. We need to squash these values into a pseudo-probability distribution. We can do that with the softmax distribution $\mathrm{softmax} : \mathbb{R}^n \rightarrow [0, 1]^n$. It is defined as follows
 
 $$\mathrm{softmax}(\mathbf{x})_i = \frac{e^{\mathbf{x}_i}}{\sum_j e^{\mathbf{x}_j}}$$
