@@ -154,7 +154,8 @@ class CNN(nn.Module):
         self.pool2 = nn.MaxPool2d(kernel_size=(2, 2), stride=(2, 2))
         self.fc1 = nn.Linear(4096, 1024)
         self.initialise_layer(self.fc1)
-
+        self.lc1 = nn.Linear(1024, 10)
+        self.initialise_layer(self.lc1)
         ## TASK 6-1: Define the last FC layer and initialise its parameters
 
     def forward(self, images: torch.Tensor) -> torch.Tensor:
@@ -164,6 +165,7 @@ class CNN(nn.Module):
         x = self.pool2(x)
         x = torch.flatten(x, start_dim=1)
         x = F.relu(self.fc1(x))
+        x = self.lc1(x)
         ## TASK 6-2: Pass x through the last fully connected layer
         return x
 
