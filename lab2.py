@@ -144,6 +144,14 @@ class CNN(nn.Module):
         )
         self.initialise_layer(self.conv1)
         self.pool1 = nn.MaxPool2d(kernel_size=(2, 2), stride=(2, 2))
+        self.conv2 = nn.Conv2d(
+            in_channels=ImageShape(16,16, 32),
+            out_channels=64,
+            kernel_size=(5, 5),
+            padding=(2, 2),
+        )
+        self.initialise_layer(self.conv2)
+        self.pool2 = nn.MaxPool2d(kernel_size=(2, 2), stride=(2, 2))
         ## TASK 2-1: Define the second convolutional layer and initialise its parameters
         ## TASK 3-1: Define the second pooling layer
         ## TASK 5-1: Define the first FC layer and initialise its parameters
@@ -152,6 +160,8 @@ class CNN(nn.Module):
     def forward(self, images: torch.Tensor) -> torch.Tensor:
         x = F.relu(self.conv1(images))
         x = self.pool1(x)
+        x = F.relu(self.conv2(images))
+        x = self.pool2(x)
         ## TASK 2-2: Pass x through the second convolutional layer
         ## TASK 3-2: Pass x through the second pooling layer
         ## TASK 4: Flatten the output of the pooling layer so it is of shape
