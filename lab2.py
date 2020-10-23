@@ -104,8 +104,8 @@ def main(args):
 
     model = CNN(height=32, width=32, channels=3, class_count=10)
 
-    ## TASK 8: Redefine the criterion to be softmax cross entropy
-    criterion = lambda logits, labels: torch.tensor(0)
+
+    criterion = nn.CrossEntropyLoss()
 
     ## TASK 11: Define the optimizer
     optimizer = None
@@ -156,7 +156,6 @@ class CNN(nn.Module):
         self.initialise_layer(self.fc1)
         self.lc1 = nn.Linear(1024, 10)
         self.initialise_layer(self.lc1)
-        ## TASK 6-1: Define the last FC layer and initialise its parameters
 
     def forward(self, images: torch.Tensor) -> torch.Tensor:
         x = F.relu(self.conv1(images))
@@ -166,7 +165,6 @@ class CNN(nn.Module):
         x = torch.flatten(x, start_dim=1)
         x = F.relu(self.fc1(x))
         x = self.lc1(x)
-        ## TASK 6-2: Pass x through the last fully connected layer
         return x
 
     @staticmethod
@@ -213,18 +211,10 @@ class Trainer:
                 batch = batch.to(self.device)
                 labels = labels.to(self.device)
                 data_load_end_time = time.time()
-
-
-                output = self.model.forward(batch)
-                print(output.shape)
-                import sys; sys.exit(1)
-
-                ## TASK 7: Rename `output` to `logits`, remove the output shape printing
-                ##         and get rid of the `import sys; sys.exit(1)`
-
+                logits = self.model.forward(batch)
                 ## TASK 9: Compute the loss using self.criterion and
                 ##         store it in a variable called `loss`
-                loss = torch.tensor(0)
+                loss = self.criterion(logits,labels)
 
                 ## TASK 10: Compute the backward pass
 
