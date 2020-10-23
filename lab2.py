@@ -152,8 +152,6 @@ class CNN(nn.Module):
         )
         self.initialise_layer(self.conv2)
         self.pool2 = nn.MaxPool2d(kernel_size=(2, 2), stride=(2, 2))
-        ## TASK 2-1: Define the second convolutional layer and initialise its parameters
-        ## TASK 3-1: Define the second pooling layer
         ## TASK 5-1: Define the first FC layer and initialise its parameters
         ## TASK 6-1: Define the last FC layer and initialise its parameters
 
@@ -162,8 +160,7 @@ class CNN(nn.Module):
         x = self.pool1(x)
         x = F.relu(self.conv2(x))
         x = self.pool2(x)
-        ## TASK 2-2: Pass x through the second convolutional layer
-        ## TASK 3-2: Pass x through the second pooling layer
+        x = torch.Flatten(x, start_dim=1)
         ## TASK 4: Flatten the output of the pooling layer so it is of shape
         ##         (batch_size, 4096)
         ## TASK 5-2: Pass x through the first fully connected layer
